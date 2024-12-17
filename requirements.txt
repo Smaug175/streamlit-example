@@ -1,4 +1,5 @@
-altair
-pandas
+ezdxf
 streamlit
-numpy
+openpyxl
+cryptography
+pandas
