@@ -15,8 +15,8 @@ def set_role():
 
 # Selectbox to choose role 高级用法
 st.selectbox(
-    "Select your role:",
-    [None, "user", "admin", "super-admin"],
+    "选择角色：",
+    [None, "用户", "管理员", "超级管理员"],
     key="_role",
     on_change=set_role,
 )

@@ -1,8 +1,7 @@
 import streamlit as st
 from menu import menu_with_redirect
 import tempfile
-from tools import logger, crypto_data_instance, config_setting_instance, MOLDS
-import os
+from tools.normal import logger, config_setting_instance, MOLDS
 from bin.ShrinkTube import ShrinkTubeClass
 
 @st.fragment

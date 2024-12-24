@@ -1,0 +1,75 @@
+2024-12-18 14:34:37,286 - MyLogger - INFO - 配置文件加载成功
+2024-12-18 14:34:37,286 - MyLogger - INFO - 获取所有配置文件
+2024-12-18 14:34:44,816 - MyLogger - INFO - /var/folders/_t/s_hprx_106d776nkttm4wr4h0000gn/T/tmpej7v2f07: 文件导入成功
+2024-12-18 14:34:44,818 - MyLogger - INFO - 参数读取成功
+2024-12-18 14:34:44,818 - MyLogger - INFO - 参数提取成功
+2024-12-18 14:34:44,818 - MyLogger - INFO - 参数检查成功
+2024-12-18 14:34:44,818 - MyLogger - INFO - 参数规则检查成功
+2024-12-18 14:34:44,818 - MyLogger - WARNING - 第2个过渡段: 不存在，报错位置：
+TubeModelClass.get_params()
+2024-12-18 14:34:44,820 - MyLogger - INFO - 参数输出成功
+2024-12-18 14:34:57,503 - MyLogger - INFO - 管件参数提取成功，位置位于：ShrinkTubeClass._get_params_from_tube
+2024-12-18 14:34:57,504 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,504 - MyLogger - INFO - 获取配置文件, key: 裁剪夹模
+2024-12-18 14:34:57,504 - MyLogger - INFO - 裁剪夹模初始化完成
+2024-12-18 14:34:57,504 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,504 - MyLogger - INFO - 获取配置文件, key: 成型模
+2024-12-18 14:34:57,505 - MyLogger - INFO - 成型模初始化完成
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 成型芯轴
+2024-12-18 14:34:57,505 - MyLogger - INFO - 成型芯轴初始化完成
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 成型退料模
+2024-12-18 14:34:57,505 - MyLogger - INFO - 成型退料模初始化完成
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 缩管模
+2024-12-18 14:34:57,505 - MyLogger - INFO - 缩管模初始化完成
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 抽管芯轴
+2024-12-18 14:34:57,505 - MyLogger - INFO - 抽管芯轴初始化完成
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 全局参数
+2024-12-18 14:34:57,505 - MyLogger - INFO - 获取配置文件, key: 抽管退料模
+2024-12-18 14:34:57,505 - MyLogger - INFO - 抽管退料模初始化完成
+2024-12-18 14:34:57,506 - MyLogger - ERROR - 没有找到裁剪夹模的图号，将使用默认的图号
+2024-12-18 14:34:57,507 - MyLogger - INFO - 管件参数提取成功，位置：裁剪夹模参数
+2024-12-18 14:34:57,507 - MyLogger - INFO - 裁剪夹模参数设置成功
+2024-12-18 14:34:57,508 - MyLogger - ERROR - 没有找到缩管模的图号，将使用默认的图号
+2024-12-18 14:34:57,508 - MyLogger - INFO - 管件参数提取成功，位置：缩管模参数
+2024-12-18 14:34:57,508 - MyLogger - INFO - 缩管模参数设置成功
+2024-12-18 14:34:57,508 - MyLogger - ERROR - 没有找到抽管芯轴的图号，将使用默认的图号
+2024-12-18 14:34:57,508 - MyLogger - INFO - 管件参数提取成功，位置：抽管芯轴参数
+2024-12-18 14:34:57,509 - MyLogger - INFO - 抽管芯轴参数设置成功
+2024-12-18 14:34:57,509 - MyLogger - ERROR - 没有找到抽管退料模的图号，将使用默认的图号
+2024-12-18 14:34:57,509 - MyLogger - INFO - 管件参数提取成功，位置：抽管退料模参数
+2024-12-18 14:34:57,509 - MyLogger - INFO - 抽管退料模参数设置成功
+2024-12-18 14:34:57,510 - MyLogger - INFO - 抽管计算成功
+2024-12-18 14:35:03,478 - MyLogger - ERROR - bin/local/database/Project.enc 加密文件没有任何信息！
+2024-12-18 14:35:03,478 - MyLogger - INFO - bin/local/database/Project.enc 加密文件不存在，将按照新的格式创建
+2024-12-18 14:35:03,497 - MyLogger - INFO - bin/local/database/Project.enc 数据加密成功
+2024-12-18 14:35:03,497 - MyLogger - INFO - 项目数据加密成功
+2024-12-18 14:35:03,498 - MyLogger - ERROR - bin/local/database/mold/DC0124-AD03.enc 加密文件没有任何信息！
+2024-12-18 14:35:03,498 - MyLogger - INFO - bin/local/database/mold/DC0124-AD03.enc 加密文件不存在，将按照新的格式创建
+2024-12-18 14:35:03,498 - MyLogger - INFO - bin/local/database/mold/DC0124-AD03.enc 数据加密成功
+2024-12-18 14:35:03,498 - MyLogger - INFO - DC0124-AD030000 数据加密成功
+2024-12-18 14:35:03,499 - MyLogger - ERROR - bin/local/database/mold/DC0124-ADIE.enc 加密文件没有任何信息！
+2024-12-18 14:35:03,499 - MyLogger - INFO - bin/local/database/mold/DC0124-ADIE.enc 加密文件不存在，将按照新的格式创建
+2024-12-18 14:35:03,499 - MyLogger - INFO - bin/local/database/mold/DC0124-ADIE.enc 数据加密成功
+2024-12-18 14:35:03,499 - MyLogger - INFO - DC0124-ADIE0000 数据加密成功
+2024-12-18 14:35:03,499 - MyLogger - ERROR - bin/local/database/mold/DC0124-ADBT.enc 加密文件没有任何信息！
+2024-12-18 14:35:03,499 - MyLogger - INFO - bin/local/database/mold/DC0124-ADBT.enc 加密文件不存在，将按照新的格式创建
+2024-12-18 14:35:03,500 - MyLogger - INFO - bin/local/database/mold/DC0124-ADBT.enc 数据加密成功
+2024-12-18 14:35:03,500 - MyLogger - INFO - DC0124-ADBT0000 数据加密成功
+2024-12-18 14:35:03,500 - MyLogger - ERROR - bin/local/database/mold/DC0124-AD01.enc 加密文件没有任何信息！
+2024-12-18 14:35:03,500 - MyLogger - INFO - bin/local/database/mold/DC0124-AD01.enc 加密文件不存在，将按照新的格式创建
+2024-12-18 14:35:03,500 - MyLogger - INFO - bin/local/database/mold/DC0124-AD01.enc 数据加密成功
+2024-12-18 14:35:03,501 - MyLogger - INFO - DC0124-AD010000 数据加密成功
+2024-12-18 14:35:03,595 - MyLogger - INFO - 裁剪夹模的参数修改，修改标准DXF文件
+2024-12-18 14:35:03,654 - MyLogger - INFO - 裁剪夹模DXF文件保存成功, 已保存至:local_cache/19G41231-ST-3-1/DC0124-AD030000.dxf
+2024-12-18 14:35:03,697 - MyLogger - INFO - 缩管模的参数修改，修改标准DXF文件
+2024-12-18 14:35:03,728 - MyLogger - INFO - 缩管模DXF文件保存成功, 已保存至:local_cache/19G41231-ST-3-1/DC0124-ADIE0000.dxf
+2024-12-18 14:35:03,813 - MyLogger - INFO - 抽管芯轴的参数修改，修改标准DXF文件
+2024-12-18 14:35:03,852 - MyLogger - INFO - 抽管芯轴DXF文件保存成功, 已保存至:local_cache/19G41231-ST-3-1/DC0124-ADBT0000.dxf
+2024-12-18 14:35:03,879 - MyLogger - INFO - 抽管退料模的参数修改，修改标准DXF文件
+2024-12-18 14:35:03,899 - MyLogger - INFO - 抽管退料模DXF文件保存成功, 已保存至:local_cache/19G41231-ST-3-1/DC0124-AD010000.dxf
+2024-12-18 14:35:03,899 - MyLogger - INFO - 所有模具的DXF文件保存成功
+2024-12-18 14:35:03,921 - MyLogger - INFO - 所有模具的excel文件保存成功， 路径位于：local_cache/19G41231-ST-3-1/模具参数汇总.xlsx

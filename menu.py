@@ -2,23 +2,33 @@ import streamlit as st
 
 
 def authenticated_menu():
-    # Show a navigation menu for authenticated users
-    st.sidebar.page_link("app.py", label="Switch accounts")
-    st.sidebar.page_link("pages/user.py", label="Your profile")
-    st.sidebar.page_link("pages/normal_introduce.py", label="普通抽介绍")
-    st.sidebar.page_link("pages/normal.py", label="普通抽计算")
-    if st.session_state.role in ["admin", "super-admin"]:
+    st.sidebar.header("普通抽")
+    st.sidebar.page_link("pages/1_normal_introduce.py", label="📣普通抽介绍")
+    st.sidebar.page_link("pages/2_normal_caculate.py", label="🧮普通抽计算")
+
+    st.sidebar.divider()
+
+    st.sidebar.header("账户管理")
+    st.sidebar.page_link("pages/user.py", label="你的账户")
+
+    if st.session_state.role in ["管理员", "超级管理员"]:
         st.sidebar.page_link("pages/admin.py", label="Manage users")
         st.sidebar.page_link(
             "pages/super-admin.py",
             label="Manage admin access",
-            disabled=st.session_state.role != "super-admin",
+            disabled=st.session_state.role != "超级管理员",
         )
+
+    st.sidebar.divider()
+
+    if st.sidebar.button("退出登录", use_container_width=True):
+        st.session_state.role = None
+        st.rerun()
 
 
 def unauthenticated_menu():
     # Show a navigation menu for unauthenticated users
-    st.sidebar.page_link("app.py", label="Log in")
+    st.sidebar.page_link("app.py", label="登录")
 
 
 def menu():
