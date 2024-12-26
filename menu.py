@@ -23,6 +23,7 @@ def authenticated_menu():
 
     if st.sidebar.button("退出登录", use_container_width=True):
         st.session_state.role = None
+        st.session_state.logged_in = False
         st.rerun()
 
 

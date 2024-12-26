@@ -1,3 +1,4 @@
+## 本地调试
 ### 安装依赖
 ```bash
 
@@ -16,5 +17,26 @@ pip3 install -r requirements.txt
 ### 运行 app
 ```bash
 
-streamlit run app.py --server.port=80 --server.address=0.0.0.0
+streamlit run app.py --server.port=80
+```
+
+## 部署
+### 运行 app
+```bash
+
+nohup streamlit run app.py --server.port=80 > log.txt 2>&1 &
+```
+### 查看输出
+```bash
+
+tail -f log.txt
+```
+### 查找并杀死进程
+```bash
+
+ps aux | grep streamlit
+```
+```bash
+
+kill <pid>
 ```
