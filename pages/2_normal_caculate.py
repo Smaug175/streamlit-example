@@ -90,8 +90,7 @@ def save_params_and_files():
     out_root = 'local_cache'
     st.session_state.zip_file_path = st.session_state.shrink_tube_instance.output_zip_from_cache(out_root)
 
-
-# Redirect to app.py if not logged in, otherwise show the navigation menu
+# 如果未登录，则重定向到app.py，否则显示导航菜单。
 menu_with_redirect()
 
 if 'shrink_tube_instance' not in st.session_state:

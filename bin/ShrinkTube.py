@@ -1,5 +1,5 @@
 import os
-
+import json
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment
@@ -72,41 +72,37 @@ class ShrinkTubeClass:
         return self.df_to_dict(self.tube_df_params)
 
     def get_tube_params_df(self):
-        """将管件参数转换为 df，并返回"""
-        # TODO：返回参数描述
-        return self.tube_df_params
+        """增加参数描述"""
+        parameter_list = list(self.tube_df_params['Parameter'])
+        value_list = list(self.tube_df_params['Value'])
+        description_list = []
+        for param in parameter_list:
+            description_list.append(self.Parameter_Description['管件参数'][param])
+        tube_params_df = pd.DataFrame({
+            '参数': parameter_list,
+            '值': value_list,
+            '描述': description_list
+        })
+        return tube_params_df
 
     def __init__(self, logger, file_path):
         """初始化ShrinkTubeClass"""
         self.logger = logger
+        # 导入模具的参数描述和计算方法
+        with open('bin/model/Normal/Parameter_Description.json', 'r', encoding='utf-8') as file:
+            self.Parameter_Description = json.load(file)
+        with open('bin/model/Normal/Parameter_Calculate_Method.json', 'r', encoding='utf-8') as file:
+            self.Parameter_Calculate_Method = json.load(file)
 
         if file_path:
-            self.file_name = file_path.split('/')[-1][:-4]
-
-            # 读取管件的参数
-            tube = TubeModelClass(file_path, self.logger)
-
-            self.tube_df_params = tube.get_params()
-            # self.tube_df_params : pd.DataFrame; 管件的参数，储存格式为DataFrame
-
-            # 额外信息
-            self.external_params = {
-                '图号': '/',
-                '件数': '/',
-                '车种规格': self.get_tube_params()['车种规格'],  # 从输入图中读取该参数
-                '设计者': '/',  # 来自操作的用户登录的信息
-            }
+            self.load_tube(file_path)
         else:
             print('未传入管件参数，无法计算，请使用load_tube()函数加载文件')
 
     def load_tube(self, file_path: str):
         self.file_name = file_path.split('/')[-1][:-4]
-        # 读取管件的参数
         tube = TubeModelClass(file_path, self.logger)
-
         self.tube_df_params = tube.get_params()
-        # self.tube_df_params : pd.DataFrame; 管件的参数，储存格式为DataFrame
-
         # 额外信息
         self.external_params = {
             '图号': '/',
@@ -369,7 +365,6 @@ class ShrinkTubeClass:
 
     def get_all_params(self) -> dict:
         """获取当前计算的所有参数，返回嵌套字典"""
-
         # 将关键参数同时放入该字典中
         ALL_params = {
             '管件参数': self.df_to_dict(self.tube_df_params),
@@ -388,20 +383,44 @@ class ShrinkTubeClass:
         # 将关键参数同时放入该字典中
         ALL_params = {
         }
+
         for mold_name in self.Mold_Object:
             mold = self.Mold_Object[mold_name]
             mold_params = mold.get_params()
-
+            image_number = mold_params.loc[mold_params['Parameter'] == '图号', 'Value'].values[0][:-4]
+            # print(image_number)
             mold_name = self.df_to_dict(mold_params)['模具名称']
-            ALL_params[mold_name] = mold_params
+
+            parameter_list = list(mold_params['Parameter'])
+            value_list = list(mold_params['Value'])
+            description_list = []
+            calclater_list = []
+            for param in parameter_list:
+                description_list.append(self.Parameter_Description[image_number][param])
+                calclater_list.append(self.Parameter_Calculate_Method[image_number][param])
+
+            params_df = pd.DataFrame({
+                '参数': parameter_list,
+                '值': value_list,
+                '描述': description_list,
+                '计算方法': calclater_list
+            })
+            ALL_params[mold_name] = params_df
 
         return ALL_params
 
     def save_all(self):
         """将所有参数保存到数据库中"""
+        self.get_all_params()
+        #pprint(self.get_all_params())
 
-        crypto_data = CryptoDataClass(self.logger)
-        crypto_data.encrypt_data(self.get_all_params())
+        # crypto_data = CryptoDataClass(self.logger)
+        # crypto_data.encrypt_data(self.get_all_params())
+
+        # 使用最新的方式保存数据
+        from bin.utils.SQLite_control import SQLiteControl
+        sqlite_control = SQLiteControl(self.logger)
+        sqlite_control.insert_data(self.get_all_params())
 
     def output_dxf(self, output_path: str):
         """将所有模具的DXF文件保存到指定路径"""
