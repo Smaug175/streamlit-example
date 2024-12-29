@@ -1,0 +1,10 @@
+2024-12-29 14:39:35,567 - MyLogger - INFO - 配置文件加载成功
+2024-12-29 14:39:35,567 - MyLogger - INFO - 获取所有配置文件
+2024-12-29 14:39:40,176 - MyLogger - INFO - C:\Users\liuyu\AppData\Local\Temp\tmp75srqhb6: 文件导入成功
+2024-12-29 14:39:40,179 - MyLogger - INFO - 参数读取成功
+2024-12-29 14:39:40,179 - MyLogger - INFO - 参数提取成功
+2024-12-29 14:39:40,179 - MyLogger - INFO - 参数检查成功
+2024-12-29 14:39:40,179 - MyLogger - INFO - 参数规则检查成功
+2024-12-29 14:39:40,179 - MyLogger - WARNING - 第2个过渡段: 不存在，报错位置：
+TubeModelClass.get_params()
+2024-12-29 14:39:40,182 - MyLogger - INFO - 参数输出成功

@@ -418,8 +418,8 @@ class ShrinkTubeClass:
         # crypto_data.encrypt_data(self.get_all_params())
 
         # 使用最新的方式保存数据
-        from bin.utils.SQLite_control import SQLiteControl
-        sqlite_control = SQLiteControl(self.logger)
+        from bin.utils.SQLite_control import MoldControl
+        sqlite_control = MoldControl(self.logger)
         sqlite_control.insert_data(self.get_all_params())
 
     def output_dxf(self, output_path: str):
