@@ -30,6 +30,7 @@ def authenticated_menu():
 def unauthenticated_menu():
     # Show a navigation menu for unauthenticated users
     st.sidebar.page_link("app.py", label="登录")
+    st.sidebar.page_link("pages/sign_up.py", label="注册")
 
 
 def menu():

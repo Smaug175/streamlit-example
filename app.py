@@ -24,33 +24,24 @@ if not st.session_state.login:
             'id': st.session_state.id_number,
             'password': st.session_state.password
         }
-        result = user_control.query(input)
-        if result[0]:
-            st.session_state.login = True
-            st.session_state.role = result[1]
+        
+        if input['id'] == '' or input['password'] == '':
+            st.error("账号或密码不能为空！")
         else:
-            st.session_state.login = False
-        st.rerun()
-    # TODO 使用弹出框来注册账号
+            result = user_control.query(input)
+            if result[0]:
+                st.session_state.login = True
+                st.session_state.role = result[1]
+                st.rerun()
+            else:
+                st.session_state.login = False
+                message = result[1]
+                st.error(message)
 else:
     st.write("# 🎉登录成功！")
     st.write("账号是：", st.session_state.id_number)
     st.write("密码是：", st.session_state.password)
     st.write("角色是：", st.session_state.role)
 
-
-# # Retrieve the role from Session State to initialize the widget
-# st.session_state._role = st.session_state.role
-# def set_role():
-#     # Callback function to save the role selection to Session State
-#     st.session_state.role = st.session_state._role
-
-# Selectbox to choose role 高级用法
-# st.selectbox(
-#     "选择角色：",
-#     [None, "用户", "管理员", "超级管理员"],
-#     key="_role",
-#     on_change=set_role,
-# )
 
 menu() # Render the dynamic menu

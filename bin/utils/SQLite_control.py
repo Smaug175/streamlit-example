@@ -54,6 +54,7 @@ class MoldControl:
             conn = sqlite3.connect(self.database_path[machine])
             cursor = conn.cursor()
             # print(machine_table_insert_sentences)
+            print(machine_table_insert_sentences, input)
             cursor.execute(machine_table_insert_sentences, input)
             conn.commit()
             conn.close()
@@ -107,13 +108,35 @@ class UserControl:
         """
         input = []
         for i in ('id', 'name', 'password', 'license', 'authority'):
-            input.append(data[i])
+            if i == 'id':
+                input.append(int(data[i]))
+            else:
+                input.append(data[i])
+        
+        id = int(data['id'])
+        select_sql = "SELECT * FROM user WHERE id = {}".format(id)
         conn = sqlite3.connect(self.database_path)
         cursor = conn.cursor()
-        cursor.execute(insert_user, input)
-        conn.commit()
+        cursor.execute(select_sql)
+        results = cursor.fetchall()
         conn.close()
-
+        
+        if len(results) != 0:
+            print('用户已存在')
+            return (False, '用户已存在')
+        else:
+            try:
+                conn = sqlite3.connect(self.database_path)
+                cursor = conn.cursor()
+                cursor.execute(insert_user, input)
+                conn.commit()
+                conn.close()
+                print('用户注册成功')
+                return (True, input[4])
+            except Exception as e:
+                print(e)
+                return (False, '用户注册失败')
+        
     def query(self, data):
         """登录：查询用户数据"""
         id = int(data['id'])
