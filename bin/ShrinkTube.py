@@ -15,6 +15,7 @@ from bin.model.TubeModel import TubeModelClass
 from bin.utils.CryptoData import CryptoDataClass
 import shutil
 import zipfile
+from bin.utils.SQLite_control import MoldControl
 
 class ShrinkTubeClass:
     """缩管计算类
@@ -148,20 +149,28 @@ class ShrinkTubeClass:
             }
 
         # 获取新的图号
-        crypto_data = CryptoDataClass(logger)
+        # crypto_data = CryptoDataClass(logger)
 
         try:
-            name = machine_type+'-'+self.Drawing_Number[mold_name]
-            data_dict = crypto_data.decrypt_file_by_big_graph_number(name)
+            # machine_type
+            # big_graph_number
+            sqlite_control = MoldControl(self.logger)
+            number = sqlite_control.query_max_graph_number(machine_type, self.Drawing_Number[mold_name])
+            # 如果不存在记录，则会返回 0
+            
+            # name = machine_type+'-'+self.Drawing_Number[mold_name]
+            # print(name)
+            # data_dict = crypto_data.decrypt_file_by_big_graph_number(name)
 
-            # print('获取{}的图号，数据字典为：'.format(mold_name))
-            # pprint(data_dict.keys())
+            # # print('获取{}的图号，数据字典为：'.format(mold_name))
+            # # pprint(data_dict.keys())
 
-            keys = data_dict.keys()
-            index = []
-            for key in keys:
-                index.append(int(key[-4:]))
-            number = max(index) + 1
+            # keys = data_dict.keys()
+            # index = []
+            # for key in keys:
+            #     index.append(int(key[-4:]))
+                
+            number = number + 1
             str_number = str(number)
 
             if len(str_number) != 4:
@@ -170,13 +179,9 @@ class ShrinkTubeClass:
                 new_number = self.Drawing_Number[mold_name] + str_number
             return machine_type + '-' + new_number
         except:
-            # TODO: 在这里可以修改初始图号
-
             print('没有找到{}的图号，将使用默认的图号'.format(mold_name))
             self.logger.error('没有找到{}的图号，将使用默认的图号'.format(mold_name))
-
             new_number = self.Drawing_Number[mold_name] + '0000'
-
             return machine_type + '-' + new_number
 
     def calculate(self, user_name: str, config_setting_instance, Normal_Add: bool, mold_list: list, machine_type: str) -> dict:
@@ -418,7 +423,6 @@ class ShrinkTubeClass:
         # crypto_data.encrypt_data(self.get_all_params())
 
         # 使用最新的方式保存数据
-        from bin.utils.SQLite_control import MoldControl
         sqlite_control = MoldControl(self.logger)
         sqlite_control.insert_data(self.get_all_params())
 

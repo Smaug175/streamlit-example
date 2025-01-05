@@ -10,13 +10,13 @@ if "role" not in st.session_state or "login" not in st.session_state or st.sessi
 @st.fragment
 def sign_up_wiget():
     # Widgets for login
-    st.write("# 📝注册")
-    st.write("##### 请输入以下信息：")
+    st.write("# ✍️📋注册")
+    st.write("##### 请填写以下信息：")
   
-    st.session_state.id_number = st.text_input(label="账号", value="")
-    st.session_state.password = st.text_input(label="密码", value="")
-    st.session_state.name = st.text_input(label="姓名", value="")
-    st.session_state.license = st.text_input(label="许可证", value="")
+    st.session_state.id_number = st.text_input(label="账号（只能使用数字）：", value="")
+    st.session_state.password = st.text_input(label="密码：", value="")
+    st.session_state.name = st.text_input(label="姓名：", value="")
+    st.session_state.license = st.text_input(label="许可证：", value="")
     
 if not st.session_state.login:
     sign_up_wiget()
@@ -31,7 +31,7 @@ if not st.session_state.login:
         }
         
         if input['id'] == '' or input['password'] == '' or input['name'] == '' or input['license'] == '':
-            st.error("输入信息不能为空！")
+            st.error("⚠️输入信息不能为空！")
         else:
             # 注册
             result = user_control.insert_data(input)
@@ -42,7 +42,7 @@ if not st.session_state.login:
             else:
                 st.session_state.login = False
                 message = result[1]
-                st.error(message)
+                st.error('⚠️'+message)
 else:
     st.write("# 🎉注册成功！")
     st.write("账号是：", st.session_state.id_number)

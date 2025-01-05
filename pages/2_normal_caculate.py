@@ -4,6 +4,9 @@ import tempfile
 from tools.normal import logger, config_setting_instance, MOLDS
 from bin.ShrinkTube import ShrinkTubeClass
 
+# 显示侧边
+menu_with_redirect()
+
 @st.fragment
 def header():
     st.title("普通抽模具自动设计")
@@ -90,8 +93,7 @@ def save_params_and_files():
     out_root = 'local_cache'
     st.session_state.zip_file_path = st.session_state.shrink_tube_instance.output_zip_from_cache(out_root)
 
-# 如果未登录，则重定向到app.py，否则显示导航菜单。
-menu_with_redirect()
+
 
 if 'shrink_tube_instance' not in st.session_state:
     st.session_state.shrink_tube_instance = ShrinkTubeClass(logger, None) # 重新加载

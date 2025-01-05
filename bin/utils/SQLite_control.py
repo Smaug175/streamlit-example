@@ -1,34 +1,35 @@
 import os
 from bin.utils.normal_sql_centences import create_sentences, insert_sentences_list
 import sqlite3
+import pandas as pd
 
 class MoldControl:
-    def __init__(self, logger):
-        self.logger = logger
+    def __init__(self, logger=None):
+        # self.logger = logger
 
         # 按照不同的机床设置不同的数据文件
         self.database_path = {
-            "DC0124": "database/mold/DC0124.db",
-            "DC0121": "database/mold/DC0121.db",
-            "DC0125": "database/mold/DC0125.db",
+            "DC0124": "database/normal-mold/DC0124.db",
+            "DC0121": "database/normal-mold/DC0121.db",
+            "DC0125": "database/normal-mold/DC0125.db",
         }
 
         # 创建数据的保存文件夹
         if not os.path.exists('database'):
             os.makedirs('database')
-        if not os.path.exists('database/mold'):
-            os.makedirs('database/mold')
+        if not os.path.exists('database/normal-mold'):
+            os.makedirs('database/normal-mold')
 
         for key in self.database_path:
             if not os.path.exists(self.database_path[key]):
-                self.logger.error(self.database_path[key] + ' 数据库不存在')
+                # self.logger.error(self.database_path[key] + ' 数据库不存在')
                 conn = sqlite3.connect(self.database_path[key])
                 cursor = conn.cursor()
                 for table_name in create_sentences[key]:
                     cursor.execute(create_sentences[key][table_name])
                 conn.commit()
                 conn.close()
-                self.logger.info(self.database_path[key] + ' 数据库创建成功')
+                # self.logger.info(self.database_path[key] + ' 数据库创建成功')
 
     def insert_data(self, data: dict):
         keys = data.keys()
@@ -54,15 +55,63 @@ class MoldControl:
             conn = sqlite3.connect(self.database_path[machine])
             cursor = conn.cursor()
             # print(machine_table_insert_sentences)
-            print(machine_table_insert_sentences, input)
+            # print(machine_table_insert_sentences, input)
             cursor.execute(machine_table_insert_sentences, input)
             conn.commit()
             conn.close()
-            self.logger.info(key + ' 数据插入成功!')
+            # self.logger.info(key + ' 数据插入成功!')
 
-    def query(self, query):
-        # TODO
-        pass
+    def query(self, machine, big_graph_number):
+        select_sql = "SELECT * FROM {}".format(big_graph_number)
+
+        conn = sqlite3.connect(self.database_path[machine])
+        cursor = conn.cursor()
+        cursor.execute(select_sql)
+        results = cursor.fetchall()
+        conn.close()
+
+        data = []
+        for result in results:
+            result_list = list(result)
+            str_number = str(result_list[0])
+
+            if len(str_number) != 4:
+                new_number = big_graph_number + '0' * (4 - len(str_number)) + str_number
+            else:
+                new_number = big_graph_number + str_number
+
+            graph_number = machine + '-' + new_number
+            result_list[0] = graph_number
+            data.append(result_list)
+
+        keys = insert_sentences_list[machine][big_graph_number][0]
+        keys_list = list(keys)
+        for i in range(len(keys_list)):
+            if keys_list[i] == '%%Cd0':
+                keys_list[i] = '%%Cd'
+                continue
+
+        # 创建DataFrame
+        df = pd.DataFrame(data, columns=keys_list)
+
+        return df
+    
+    def query_max_graph_number(self, machine, big_graph_number):
+        select_sql = "SELECT * FROM {}".format(big_graph_number)
+        
+        conn = sqlite3.connect(self.database_path[machine])
+        cursor = conn.cursor()
+        cursor.execute(select_sql)
+        results = cursor.fetchall()
+        conn.close()
+
+        if results == []:
+            return 0
+        else:
+            id_list = []
+            for result in results:
+                id_list.append(result[0])
+            return max(id_list)
 
     def delete(self, delete):
         # TODO
@@ -142,7 +191,6 @@ class UserControl:
         id = int(data['id'])
         password = data['password']
         select_sql = "SELECT * FROM user WHERE id = {}".format(id)
-
 
         conn = sqlite3.connect(self.database_path)
         cursor = conn.cursor()
