@@ -205,7 +205,7 @@ class UserControl:
         else:
             if password == results[0][2]:
                 print('登录成功')
-                return (True, results[0][4])
+                return (True, results[0])
             else:
                 print('密码错误')
                 return (False, '密码错误')

@@ -15,7 +15,7 @@ def sign_up_wiget():
   
     st.session_state.id_number = st.text_input(label="账号（只能使用数字）：", value="")
     st.session_state.password = st.text_input(label="密码：", value="")
-    st.session_state.name = st.text_input(label="姓名：", value="")
+    st.session_state.user_name = st.text_input(label="姓名：", value="")
     st.session_state.license = st.text_input(label="许可证：", value="")
     
 if not st.session_state.login:
@@ -25,7 +25,7 @@ if not st.session_state.login:
         input = {
             'id': st.session_state.id_number,
             'password': st.session_state.password,
-            'name': st.session_state.name,
+            'name': st.session_state.user_name,
             'license': st.session_state.license,
             'authority': 'user'
         }
@@ -47,6 +47,7 @@ else:
     st.write("# 🎉注册成功！")
     st.write("账号是：", st.session_state.id_number)
     st.write("密码是：", st.session_state.password)
+    st.write("姓名是：", st.session_state.user_name)
     st.write("角色是：", st.session_state.role)
 
 

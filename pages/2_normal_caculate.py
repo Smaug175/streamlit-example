@@ -63,7 +63,7 @@ def get_setting():
 
 @st.fragment
 def calculate(settings):
-    user_name = '0'
+    user_name = st.session_state.user_name
     forming = settings['forming']
     machine_type = settings['machine_type']
     mold_list = settings['mold_list']

@@ -28,10 +28,12 @@ if not st.session_state.login:
         if input['id'] == '' or input['password'] == '':
             st.error("⚠️账号或密码不能为空！")
         else:
+            # ('id', 'name', 'password', 'license', 'authority')
             result = user_control.query(input)
             if result[0]:
                 st.session_state.login = True
-                st.session_state.role = result[1]
+                st.session_state.user_name = result[1][1]
+                st.session_state.role = result[1][4]
                 st.rerun()
             else:
                 st.session_state.login = False
@@ -41,6 +43,7 @@ else:
     st.write("# 🎉登录成功！")
     st.write("账号是：", st.session_state.id_number)
     st.write("密码是：", st.session_state.password)
+    st.write("姓名是：", st.session_state.user_name)
     st.write("角色是：", st.session_state.role)
 
 

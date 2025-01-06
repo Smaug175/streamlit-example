@@ -283,7 +283,7 @@ class ShrinkTubeClass:
                 '抽管退料模': DC0121_AD01(self.logger, config_setting_instance),
             }
 
-            mold_name = ['裁剪夹模1', '裁剪夹模1', '成型模', '成型芯轴', '成型退料模', '缩管模', '抽管芯轴', '抽管退料模']
+            mold_name = ['裁剪夹模1', '裁剪夹模2', '成型模', '成型芯轴', '成型退料模', '缩管模', '抽管芯轴', '抽管退料模']
 
             for i in range(len(mold_name)):
                 if mold_name[i] not in mold_list:
