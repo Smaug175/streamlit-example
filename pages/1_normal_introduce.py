@@ -22,21 +22,19 @@ st.markdown(
 with st.expander("标准输入 DXF 的制作教程", expanded=False):
     st.markdown("##### a. 导入管件的 DXF 文件")
     st.write("将原本的 DWG 文件转换为 DXF 文件，备后续使用。")
-    video_file_1 = open('../sources/1导出管件为DXF.mp4', 'rb')
-    video_bytes_1 = video_file_1.read()
-    st.video(video_bytes_1)
+    # video_file_1 = open('../sources/1导出管件为DXF.mp4', 'rb')
+    # video_bytes_1 = video_file_1.read()
+    # st.video(video_bytes_1)
 
     st.markdown("##### b. 制作一抽的 DXF 文件")
-    # st.write("将原本的 DWG 文件转换为 DXF 文件，备后续使用。")
-    video_file_2 = open('../sources/2制作一抽DXF.mp4', 'rb')
-    video_bytes_2 = video_file_2.read()
-    st.video(video_bytes_2)
+    # video_file_2 = open('../sources/2制作一抽DXF.mp4', 'rb')
+    # video_bytes_2 = video_file_2.read()
+    # st.video(video_bytes_2)
 
     st.markdown("##### c. 制作二抽的 DXF 文件")
-    # st.write("将原本的 DWG 文件转换为 DXF 文件，备后续使用。")
-    video_bytes_3 = open('../sources/3制作二抽DXF.mp4', 'rb')
-    video_bytes_3 = video_bytes_3.read()
-    st.video(video_bytes_3)
+    # video_bytes_3 = open('../sources/3制作二抽DXF.mp4', 'rb')
+    # video_bytes_3 = video_bytes_3.read()
+    # st.video(video_bytes_3)
 
     st.divider()
     zip_file_path = "../sources/Standard_Example.zip"
