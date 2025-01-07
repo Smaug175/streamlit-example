@@ -1,10 +1,11 @@
 import streamlit as st
 from menu import menu
 from bin.utils.SQLite_control import UserControl
+from tools.license_check import *
 
-# Initialize st.session_state.role to None
-if "role" not in st.session_state or "login" not in st.session_state or st.session_state.login == False or st.session_state.role == None:
-    st.session_state.role = None
+# Initialize st.session_state.authority to None
+if "authority" not in st.session_state or "login" not in st.session_state or st.session_state.login == False or st.session_state.authority == None:
+    st.session_state.authority = None
     st.session_state.login = False
     
 @st.fragment
@@ -29,26 +30,30 @@ if not st.session_state.login:
             'license': st.session_state.license,
             'authority': 'user'
         }
-        
+
         if input['id'] == '' or input['password'] == '' or input['name'] == '' or input['license'] == '':
             st.error("⚠️输入信息不能为空！")
         else:
-            # 注册
-            result = user_control.insert_data(input)
-            if result[0]:
-                st.session_state.login = True
-                st.session_state.role = result[1]
-                st.rerun()
+            result = license_check(st.session_state.license)
+            if result[0] == False:
+                st.error("⚠️"+result[1])
             else:
-                st.session_state.login = False
-                message = result[1]
-                st.error('⚠️'+message)
+                # 注册
+                result = user_control.insert_data(input)
+                if result[0]:
+                    st.session_state.login = True
+                    st.session_state.authority = result[1]
+                    st.rerun()
+                else:
+                    st.session_state.login = False
+                    message = result[1]
+                    st.error('⚠️'+message)
 else:
-    st.write("# 🎉注册成功！")
-    st.write("账号是：", st.session_state.id_number)
-    st.write("密码是：", st.session_state.password)
-    st.write("姓名是：", st.session_state.user_name)
-    st.write("角色是：", st.session_state.role)
-
+    if st.session_state.authority == 'user':
+        st.switch_page("pages/user.py")
+    elif st.session_state.authority == 'admin':
+        st.switch_page("pages/admin.py")
+    elif st.session_state.authority == 'super-admin':
+        st.switch_page("pages/super-admin.py")
 
 menu() # Render the dynamic menu

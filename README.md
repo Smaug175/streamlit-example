@@ -45,3 +45,6 @@ ps aux | grep streamlit
 
 kill <pid>
 ```
+
+### 4. 附录
+- 完成了许可认证。

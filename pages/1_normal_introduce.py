@@ -73,19 +73,19 @@ df = pd.DataFrame(table_data, columns=["两段不同壁厚", "三段不同壁厚
 # 使用st.dataframe展示表格，隐藏索引列，并应用样式设置
 st.dataframe(df, hide_index=True, use_container_width=True)
 
-st.markdown("### 1.2 计算模具参数")
+st.markdown("#### 1.2 计算模具参数")
 st.write("- 可选择是否增加额外壁厚，默认否。增加额外壁厚会自动加入成型模具。")
 st.write("- 需要选择输出模具的机器类型，默认选择DC0124。")
 st.write("- 需要手动选择计算的模具，默认为空。")
 
-st.markdown("### 1.3 查看模具参数")
+st.markdown("#### 1.3 查看模具参数")
 st.write("- 可以查看模具参数的计算结果。")
 st.write("- TODO: 修改计算结果。此功能还未实现。")
 
-st.markdown("### 1.4 保存模具参数")
+st.markdown("#### 1.4 保存模具参数")
 st.write("- 新模具的图号将在数据库最大图号的基础上叠加，所有数据将一键保存。")
 
-st.markdown("### 1.5 导出模具的DXF文件")
+st.markdown("#### 1.5 导出模具的DXF文件")
 st.write("- 下载包含模具的 DXF 文件和汇总参数的 excel 表格的 zip 文件。")
 st.write("- 模具使用图号命名。")
 st.write("- 重复计算同一管件的模具参数，新的计算结果将会保存到数据库中，但是导出的文件将会覆盖之前的文件。")

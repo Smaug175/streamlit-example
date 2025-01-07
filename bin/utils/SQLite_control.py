@@ -215,17 +215,3 @@ class UserControl:
 
     def update(self, update):
         pass
-
-
-
-
-if __name__ == '__main__':
-    uc = UserControl(logger = None)
-    data = {
-        'id': 1,
-        'name': 'admin',
-        'password': '123',
-        'license': '123',
-        'authority': 'admin'
-    }
-    uc.insert_data(data)
