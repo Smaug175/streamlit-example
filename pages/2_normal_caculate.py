@@ -70,6 +70,8 @@ def calculate(settings):
     st.session_state.shrink_tube_instance.calculate(user_name, config_setting_instance, forming, mold_list,
                                                  machine_type)
 
+import pandas as pd
+
 @st.fragment
 def show_caculate_results():
     st.divider()
@@ -82,10 +84,22 @@ def show_caculate_results():
     for i in range(len(tabs_list)):
         tab = tabs_list[i]
         with tab:
-            st.dataframe(caculate_results[names[i]],
-                         use_container_width=True,
-                         hide_index=True,
-                         )
+            edited_data = st.data_editor(caculate_results[names[i]],
+                           use_container_width=True,
+                           hide_index=True,
+                           column_config={
+                               "参数": st.column_config.TextColumn("参数", disabled=True),
+                               "描述": st.column_config.TextColumn("描述", disabled=True),
+                               "计算方法": st.column_config.TextColumn("计算方法", disabled=True),
+                           })
+            caculate_results[names[i]] = edited_data # 更新数据
+            mold_name = names[i]
+            keys = list(caculate_results[names[i]]['参数'])
+            values = list(caculate_results[names[i]]['值'])
+            # print(mold_name, keys, values)
+            for i in range(len(keys)):
+                st.session_state.shrink_tube_instance.modify_parameters(mold_name, keys[i], values[i])
+
 
 @st.fragment
 def save_params_and_files():

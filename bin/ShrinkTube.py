@@ -75,7 +75,9 @@ class ShrinkTubeClass:
     def get_tube_params_df(self):
         """增加参数描述"""
         parameter_list = list(self.tube_df_params['Parameter'])
-        value_list = list(self.tube_df_params['Value'])
+        value_list = []
+        for v in self.tube_df_params['Value']:
+            value_list.append(str(v))
         description_list = []
         for param in parameter_list:
             description_list.append(self.Parameter_Description['管件参数'][param])
@@ -397,7 +399,9 @@ class ShrinkTubeClass:
             mold_name = self.df_to_dict(mold_params)['模具名称']
 
             parameter_list = list(mold_params['Parameter'])
-            value_list = list(mold_params['Value'])
+            value_list = []
+            for v in mold_params['Value']:
+                value_list.append(str(v))
             description_list = []
             calclater_list = []
             for param in parameter_list:
