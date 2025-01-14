@@ -12,7 +12,7 @@ from bin.model.Normal.ShrinkTubeMandrel import ADBT
 from bin.model.Normal.ShrinkTubeMold import ADIE
 from bin.model.Normal.ShrinkTubeUnloadingMold import DC0124_AD01, DC0121_AD01, DC0125_AD06_S
 from bin.model.TubeModel import TubeModelClass
-from bin.utils.CryptoData import CryptoDataClass
+
 import shutil
 import zipfile
 from bin.utils.SQLite_control import MoldControl

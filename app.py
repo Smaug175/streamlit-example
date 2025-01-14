@@ -2,9 +2,11 @@ import streamlit as st
 from menu import menu
 from bin.utils.SQLite_control import UserControl
 
-
-# Initialize st.session_state.authority to None
-if "authority" not in st.session_state or "login" not in st.session_state or st.session_state.login == False or st.session_state.authority == None:
+try:
+    if "authority" not in st.session_state or "login" not in st.session_state or st.session_state.login == False or st.session_state.authority == None:
+        st.session_state.authority = None
+        st.session_state.login = False
+except:
     st.session_state.authority = None
     st.session_state.login = False
 
